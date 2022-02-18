@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.uniinfo.collagequera.R;
+import com.uniinfo.collagequera.bean.User;
+
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText name, userEmail, userMobileNumber, userName,password, userType;
@@ -24,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     Button signUpButton;
     CheckBox terms_conditions;
     Spinner spType;
+    User u;
     String type[]={"Select Type","Student","Faculty"};
 
     @Override
@@ -47,6 +50,20 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View view) {
                 Toast.makeText(RegisterActivity.this, "Register user btn", Toast.LENGTH_SHORT).show();
+                String nm= name.getText().toString();
+                String username= userName.getText().toString();
+                String email= userEmail.getText().toString();
+                String mobile= userMobileNumber.getText().toString();
+                String type= userType.getText().toString();
+                String pw= password.getText().toString();
+                if(type.equalsIgnoreCase("admin"))
+                    u=new User(nm,username,email,pw,mobile,1);
+
+                else if(type.equalsIgnoreCase("student"))
+                    u=new User(nm,username,email,pw,mobile,2);
+
+                else if(type.equalsIgnoreCase("faculty"))
+                    u=new User(nm,username,email,pw,mobile,3);
             }
         });
 

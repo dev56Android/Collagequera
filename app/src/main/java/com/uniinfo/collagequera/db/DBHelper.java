@@ -22,7 +22,9 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase)
     {
-
+        String userQuery ="create table "+tblName+"user(id int primary key autoincrement,name varchar(30),username varchar(30) unique not null" +
+                ",email varchar(30) unique,password varchar(30) not null,mobileno int unique,type int)";
+        sqLiteDatabase.execSQL(userQuery);
     }
 
     @Override
